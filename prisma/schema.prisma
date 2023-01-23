@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db?connection_limit=1"
+}
+
+model Player {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String  @unique
+}
+
+model Game {
+  id Int @id @default(autoincrement())
+  player_id Int
+  opponent_id Int
+  chat_id Int
+  success_guess Int
+  success_disguise Int
+}
+
+model Chat {
+  id Int @id @default(autoincrement())
+  transcript String
+}

@@ -6,8 +6,6 @@ import { meGet } from "./api/me";
 import { resultGet } from "./api/result";
 import { scoresGet } from "./api/scores";
 
-const prisma = new PrismaClient();
-
 const app = express();
 const port = 3000;
 

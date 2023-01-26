@@ -10,9 +10,28 @@ export default async function main() {
     create: {
       email: "test@example.com",
       name: "Test User",
+      avatar: "/sheep-face.png",
+      balance: 20,
+      currency_symbol: "$$$",
     },
     update: {},
   });
+
+  // The bot
+  await prisma.player.upsert({
+    where: {
+      email: "gpt3davinci@electricsheep.chat",
+    },
+    create: {
+      email: "gpt3davinci@electricsheep.chat",
+      name: "GPT-3 DaVinci",
+      avatar: "/openai-sheep-face.png",
+      balance: 0,
+      currency_symbol: "AI money",
+    },
+    update: {},
+  });
+
 }
 
 main()

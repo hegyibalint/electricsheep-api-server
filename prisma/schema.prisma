@@ -14,18 +14,38 @@ model Player {
   id    Int     @id @default(autoincrement())
   email String  @unique
   name  String  @unique
+  avatar String @default("/openai-sheep-face.png")
+  balance Int
+  currency_symbol String @default("EUR")
+  games Game[]
+  guesses_made Guess[]  @relation("player")
+  guesses_received Guess[]  @relation("opponent")
+  messages Message[]  // Why do I even need this
 }
 
 model Game {
   id Int @id @default(autoincrement())
-  player_id Int
-  opponent_id Int
-  chat_id Int
-  success_guess Int
-  success_disguise Int
+  players Player[]
+  guesses Guess[]
+  messages Message[]
 }
 
-model Chat {
+model Message {
   id Int @id @default(autoincrement())
-  transcript String
+  game Game @relation(fields: [game_id], references: [id])
+  game_id Int
+  author Player @relation(fields: [author_id], references: [id])
+  author_id Int
+  content String
+}
+
+model Guess {
+  id Int @id @default(autoincrement())
+  game Game  @relation(fields: [game_id], references: [id])
+  game_id Int
+  player Player @relation("player", fields: [player_id], references: [id])
+  player_id Int
+  opponent Player @relation("opponent", fields: [opponent_id], references: [id])
+  opponent_id Int
+  guess String
 }

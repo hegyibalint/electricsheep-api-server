@@ -4,15 +4,15 @@ export const chatGet: RequestHandler = (req, res) => {
   res.json({
     messages: [
       {
-        message: "ciao",
+        content: "ciao",
         author: "opponent",
       },
       {
-        message: "ciao a te, come stai?",
+        content: "ciao a te, come stai?",
         author: "player",
       },
       {
-        message: "tutto bene, grazie.",
+        content: "tutto bene, grazie.",
         author: "opponent",
       },
     ],
